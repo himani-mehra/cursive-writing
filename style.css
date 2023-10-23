@@ -1,0 +1,155 @@
+body {
+    /* padding: 0; */
+    margin: 0;
+}
+
+
+.logo-image {
+    width: 10vh;
+    height: 10vh;
+}
+
+#overlay-canvas {
+    position: absolute;
+    top: 10;
+    left: 10;
+    opacity: 0.4;
+    pointer-events: none;
+    /* background-color: azure; */
+}
+
+.container {
+    display: flex;
+    font-family:"classic notes";
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.canvas-space {
+    display: flex;
+}
+
+.left-section {
+    display: flex;
+    flex:70%;
+    justify-content: space-between;
+}
+.drawing-area {
+    box-shadow: 0 0 6px 0 #999;
+    margin-left: 20px;
+}
+
+.clear-button {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    width: 8vh;
+    height: 5vh;
+}
+
+.clear-button:hover {
+    background-color: #ceced3;
+}
+.options {
+    flex: 20%;
+}
+
+
+.hide-canvas {
+    /* margin: 2em; */
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    width: 8vh;
+    height: 5vh;
+}
+
+.hide-canvas:hover {
+    background-color: #ceced3;}
+
+.dropdown-container {
+    height: 50px;
+    width: 150px;
+    border-radius: 10px;
+    background-color: #517dd4;
+    color: white;
+    font-size: 20px;
+    /* font-family: "Nexa Rust", cursive; */
+    font-family:"classic notes";
+}
+
+.logo {
+    display: flex;
+    justify-content: space-around;
+    font-size: 24px;
+}
+@font-face {
+    font-family:"classic notes";
+    src: url("Classic Notes.ttf") format("truetype");
+  }
+
+.footer-icons a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.footer {
+    /* background: linear-gradient(45deg, #ff9999, #6699ff, #cc66ff, #e6e6e6); */
+    background-size: 200% 200%;
+    /* animation: gradientAnimation 4s linear infinite; */
+    color: white;
+    background-color: rgb(83, 83, 83);
+    padding: 20px;
+    text-align: center;
+}
+
+.animation-container {
+    font-size: 20px;
+    width: 80%;
+    max-width: 400px;
+    margin: 15px auto 0 auto;
+    text-align: left;
+    font-size: 30px;
+    font-family:"classic notes";
+    animation: revealMessage 5s ease-in-out;
+}
+@keyframes revealMessage {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#draggable-container {
+    /* width: 80px;
+    height: 10px; */
+    position: fixed;
+    user-select: none;
+    cursor: pointer;
+    touch-action: none;
+}
+.eraser {
+    width: 25px;
+    cursor: pointer;
+}
+
+.options-container {
+    /* right:10; */
+    /* align-items: center; */
+    height: 20vh;
+    width: 10vh;
+    
+}

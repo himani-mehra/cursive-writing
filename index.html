@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+        <div class="logo">
+            <div id="animation-container" class="animation-container"></div>
+        </div>
+
+    <div class="container">
+       
+    
+        <div class="options">
+            <div>
+                <div id="text" rows="4" cols="50"></div>
+            </div>
+            <div class="paper-section" onchange="startPractice()">
+                <div class="option_paper" data-option="uppercase">ABC</div>
+                <div class="option_paper" data-option="lowercase">abc</div>
+                <div class="option_paper" data-option="numbers">123</div>
+                <div class="option_paper" data-option="special">$*/</div>
+            </div>
+            
+            <!-- <div>
+                <select id="cursive-input" class="dropdown-container" onchange="startPractice()">
+                    <option value="uppercase">ABC</option>
+                    <option value="lowercase">abc</option>
+                    <option value="numbers">123</option>
+                    <option value="special">$*/</option>
+                </select>
+            </div> -->
+          
+            <div id="events">
+
+            </div>
+        </div>
+        <div class="left-section">
+            <div id="container" class="canvas-space">
+                <canvas id="drawing-area" class="drawing-area" height="500" width="800"></canvas>
+                <canvas id="overlay-canvas" class="drawing-area" height="500" width="800"></canvas>
+            </div>
+            <!-- <div id="drag-trace-button" draggable="true">Drag me</div> -->
+    
+    
+            <div id="draggable-container">
+                <div class="options-container">
+                    <button id="clear-button" class="clear-button" type="button">
+                        <img class="eraser" src="./images/eraser.png"/>
+                    </button>
+                    <button id="hide-canvas" class="hide-canvas" type="button">
+                        <img class="eraser" src="./images/hide.png"/>
+                    </button>
+                    <button id="clear-button" class="clear-button" type="button">
+                        <img class="eraser" src="./images/logo2.png"/>
+                    </button>
+                </div>
+            </div>
+           </div>
+        
+    </div>
+       <footer class="footer">
+        <div class="footer-icons">
+            Made with love by <a href="https://www.linkedin.com/in/himani-mehra/" target="_blank"><b><u>Himani</u></b></a>
+            </div>
+    </footer>
+</body>
+<style>
+ .option_paper {
+    margin-bottom: 10px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #A4B3B7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+</style>
+<script src="index.js"></script>
+
+</html>
