@@ -112,7 +112,15 @@ function startPractice(selectedOption) {
     content = "0123456789";
   } else if (selectedOption === "special") {
     content = "!@#$%^&*(){}[]:;?/<>";
-  }
+  }else if (selectedOption === "image") {
+    // Display the "sample" image directly on the canvas
+    const img = new Image();
+    img.onload = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+    img.src = "./images/sample.png"; // Update the path to the actual image file
+}
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = '30px "classic notes", cursive';
@@ -134,6 +142,43 @@ function startPractice(selectedOption) {
 }
 startPractice("uppercase");
 
+const ctx = canvas.getContext("2d");
+
+let content = ""; // Variable to hold the content
+
+tabElements.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const selectedOption = tab.getAttribute('data-option');
+        if (selectedOption === "upload") {
+            // If "upload" is selected, trigger the file input
+            document.getElementById("imageInput").click();
+        } else {
+            startPractice(selectedOption);
+            tabElements.forEach(element => element.classList.remove('active'));
+            tab.classList.add('active');
+        }
+    });
+});
+
+// Add an event listener to the file input element
+const imageInput = document.getElementById("imageInput");
+imageInput.addEventListener('change', () => {
+    const selectedImage = imageInput.files[0];
+
+    if (selectedImage) {
+        const image = new Image();
+        image.onload = () => {
+            // Clear the canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw the image on the canvas
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        };
+
+        // Load the selected image
+        image.src = URL.createObjectURL(selectedImage);
+    }
+});
 
 
 
@@ -371,6 +416,9 @@ draggableContainer.addEventListener("touchmove", (e) => {
 document.addEventListener("touchend", () => {
   isDragging = false;
 });
+
+
+
 
 
 

@@ -46,7 +46,7 @@ body {
     background-color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     transition: background-color 0.3s;
     width: 8vh;
     height: 5vh;
@@ -55,9 +55,40 @@ body {
 .clear-button:hover {
     background-color: #ceced3;
 }
-.options {
-    flex: 20%;
+
+.color-button {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
+    transition: background-color 0.3s;
+    width: 8vh;
+    height: 5vh;
 }
+
+.color-button:hover {
+    background-color: #ceced3;
+}
+.options {
+    flex: 5%;
+    max-height: 75vh;
+    overflow-y: scroll;
+    
+}
+
+/* .options::-webkit-scrollbar {
+    width: 2px;
+}
+
+.options::-webkit-scrollbar-thumb {
+    background: rgb(182, 181, 181);
+}
+
+.options::-webkit-scrollbar-thumb:hover {
+    background: rgb(202, 202, 202);
+} */
 
 
 .hide-canvas {
@@ -65,7 +96,7 @@ body {
     background-color: white;
     border: none;
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     transition: background-color 0.3s;
     width: 8vh;
     height: 5vh;
@@ -113,15 +144,16 @@ body {
 
 .animation-container {
     font-size: 20px;
-    width: 80%;
+    width: 95%;
     max-width: 400px;
     margin: 15px auto 0 auto;
     text-align: left;
     font-size: 30px;
+    font-weight: bold;
     font-family:"classic notes";
-    animation: revealMessage 5s ease-in-out;
+    /* animation: revealMessage 1s ease-in-out; */
 }
-@keyframes revealMessage {
+/* @keyframes revealMessage {
     0% {
         opacity: 0;
         transform: translateY(20px);
@@ -131,7 +163,7 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
+} */
 
 #draggable-container {
     /* width: 80px;
@@ -145,11 +177,25 @@ body {
     width: 25px;
     cursor: pointer;
 }
+.paint {
+    width: 30px;
+    cursor: pointer;
+}
 
 .options-container {
+    display: flex;
+    flex-direction: column;
     /* right:10; */
     /* align-items: center; */
-    height: 20vh;
-    width: 10vh;
+    /* height: 20vh;
+    width: 10vh; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
     
+}
+
+.paper-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

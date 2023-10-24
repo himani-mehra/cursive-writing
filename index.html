@@ -17,14 +17,19 @@
        
     
         <div class="options">
-            <div>
+            <!-- <div>
                 <div id="text" rows="4" cols="50"></div>
-            </div>
+            </div> -->
             <div class="paper-section" onchange="startPractice()">
                 <div class="option_paper" data-option="uppercase">ABC</div>
                 <div class="option_paper" data-option="lowercase">abc</div>
                 <div class="option_paper" data-option="numbers">123</div>
                 <div class="option_paper" data-option="special">$*/</div>
+                <div class="option_paper" data-option="upload">
+                    <input type="file" id="imageInput" accept="image/*">
+                    Upload
+                </div>
+                <div class="option_paper" data-option="image" onclick="uploadImage()">sample</div>
             </div>
             
             <!-- <div>
@@ -42,8 +47,8 @@
         </div>
         <div class="left-section">
             <div id="container" class="canvas-space">
-                <canvas id="drawing-area" class="drawing-area" height="500" width="800"></canvas>
-                <canvas id="overlay-canvas" class="drawing-area" height="500" width="800"></canvas>
+                <canvas id="drawing-area" class="drawing-area" height="500" width="950"></canvas>
+                <canvas id="overlay-canvas" class="drawing-area" height="500" width="950"></canvas>
             </div>
             <!-- <div id="drag-trace-button" draggable="true">Drag me</div> -->
     
@@ -56,8 +61,8 @@
                     <button id="hide-canvas" class="hide-canvas" type="button">
                         <img class="eraser" src="./images/hide.png"/>
                     </button>
-                    <button id="clear-button" class="clear-button" type="button">
-                        <img class="eraser" src="./images/logo2.png"/>
+                    <button id="color-button" class="color-button" type="button">
+                        <img class="paint" src="./images/color.png"/>
                     </button>
                 </div>
             </div>
@@ -73,15 +78,19 @@
 <style>
  .option_paper {
     margin-bottom: 10px;
-    width: 100px;
-    height: 100px;
+    width: 95px;
+    height: 120px;
     border: 1px solid #A4B3B7;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 #999;
 }
-
+input[type="file" i] {
+    display: none;
+}
 </style>
 <script src="index.js"></script>
 
