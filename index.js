@@ -4,11 +4,11 @@ const clearButton = document.getElementById('clear-button');
 const state = {
   mousedown: false
 };
-
+canvasContext.globalAlpha = 0.5;
 const lineWidth = 1;
 const halfLineWidth = lineWidth / 2;
-const strokeStyle = '#333';
-const shadowColor = '#333';
+const strokeStyle = 'black';
+const shadowColor = '#02040F';
 const shadowBlur = lineWidth / 4;
 
 
@@ -27,7 +27,7 @@ function handleWritingStart(event) {
   event.preventDefault();
 
   const mousePos = getMosuePositionOnCanvas(event);
-  
+
   canvasContext.beginPath();
 
   canvasContext.moveTo(mousePos.x, mousePos.y);
@@ -37,10 +37,12 @@ function handleWritingStart(event) {
   canvasContext.shadowColor = null;
   canvasContext.shadowBlur = null;
 
-  canvasContext.fill();
-  
+  // Set the opacity (50% opacity in this example)
+  canvasContext.globalAlpha = 0.5;
+
   state.mousedown = true;
 }
+
 
 function handleWritingInProgress(event) {
   event.preventDefault();
@@ -105,6 +107,7 @@ function startPractice(selectedOption) {
 
   let content = "";
   if (selectedOption === "uppercase") {
+    
     content = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   } else if (selectedOption === "lowercase") {
     content = "abcdefghijklmnopqrstuvwxyz";
@@ -113,13 +116,12 @@ function startPractice(selectedOption) {
   } else if (selectedOption === "special") {
     content = "!@#$%^&*(){}[]:;?/<>";
   }else if (selectedOption === "image") {
-    // Display the "sample" image directly on the canvas
     const img = new Image();
     img.onload = function () {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     };
-    img.src = "./images/sample.png"; // Update the path to the actual image file
+    img.src = "./images/sample.png";
 }
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -168,62 +170,14 @@ imageInput.addEventListener('change', () => {
     if (selectedImage) {
         const image = new Image();
         image.onload = () => {
-            // Clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw the image on the canvas
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         };
 
-        // Load the selected image
         image.src = URL.createObjectURL(selectedImage);
     }
 });
-
-
-
-// const cursiveSelect = document.getElementById('cursive-input');
-// cursiveSelect.addEventListener('change', startPractice);
-
-
-// function startPractice() {
-//   const cursiveInput = document.getElementById("cursive-input").value;
-
-//   const canvas = document.getElementById("drawing-area");
-//   const ctx = canvas.getContext("2d");
-
-//   let content = "";
-//   if (cursiveInput === "uppercase") {
-//     content = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//   } else if (cursiveInput === "lowercase") {
-//     content = "abcdefghijklmnopqrstuvwxyz";
-//   } else if (cursiveInput === "numbers") {
-//     content = "0123456789";
-//   } else if (cursiveInput === "special") {
-//     content = "!@#$%^&*(){}[]:;?/<>";
-//   }
-
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-//   ctx.font = '30px "classic notes", cursive';
-//   ctx.textBaseline = "middle";
-//   ctx.textAlign = "center";
-
-//   const numPerRow = 6;
-//   const charWidth = canvas.width / numPerRow;
-//   const charHeight = canvas.height / Math.ceil(content.length / numPerRow);
-
-//   for (let i = 0; i < content.length; i++) {
-//     const char = content[i];
-//     const col = i % numPerRow;
-//     const row = Math.floor(i / numPerRow);
-//     const x = col * charWidth + charWidth / 2;
-//     const y = row * charHeight + charHeight / 2;
-//     ctx.fillText(char, x, y);
-//   }
-// }
-
-
-// startPractice();
 
 
 const showWritingButton = document.getElementById('hide-canvas');
@@ -233,33 +187,6 @@ var imgElements = document.createElement("img");
 
 
 let alphabetsVisible = true;
-
-showWritingButton.addEventListener('click', function () {
-  if (alphabetsVisible) {
-    drawingArea.style.visibility = 'hidden';
-    imgElement.src = "./images/view.png";
-
-var existingImg = showWritingButton.querySelector("img");
-if (existingImg) {
-    showWritingButton.removeChild(existingImg);
-}
-
-showWritingButton.appendChild(imgElement);
-imgElement.style.width = "25px";
-  } else {
-    drawingArea.style.visibility = 'visible';
-    imgElement.src = "./images/hide.png";
-
-    var existingImg = showWritingButton.querySelector("img");
-    if (existingImg) {
-        showWritingButton.removeChild(existingImg);
-    }
-    
-    showWritingButton.appendChild(imgElement);
-  }
-  alphabetsVisible = !alphabetsVisible;
-
-});
 
 
 
@@ -332,22 +259,6 @@ function clearOverlayDrawing() {
 
 
 
-
-const animationContainer = document.getElementById("animation-container");
-const message = "Practice Digital Handwriting!";
-let index = 0;
-
-function displayMessage() {
-    if (index <= message.length) {
-        animationContainer.textContent = message.substring(0, index);
-        index++;
-        setTimeout(displayMessage, 100);
-    }
-}
-
-window.onload = displayMessage;
-
-
 document.body.addEventListener('click', function(event) {
   const target = event.target;
 
@@ -361,19 +272,6 @@ document.body.addEventListener('click', function(event) {
     handleNewEyeIconButtonClick(event);
   }
 });
-
-// function handleNewEyeIconButtonClick(event) {
-//   if (alphabetsVisible) {
-//     drawingArea.style.visibility = 'hidden';
-//     newEyeIconButton.textContent = 'Show Alphabets';
-//   } else {
-//     drawingArea.style.visibility = 'visible';
-//     newEyeIconButton.textContent = 'Hide Alphabets';
-//     startPractice("uppercase");
-//   }
-//   alphabetsVisible = !alphabetsVisible;
-// }
-
 
 // drag widget start
 
@@ -417,14 +315,93 @@ document.addEventListener("touchend", () => {
   isDragging = false;
 });
 
+showWritingButton.addEventListener('click', function () {
+  if (alphabetsVisible) {
+    drawingArea.style.visibility = 'hidden';
+    imgElement.src = "./images/view.png";
 
+var existingImg = showWritingButton.querySelector("img");
+if (existingImg) {
+    showWritingButton.removeChild(existingImg);
+}
 
+showWritingButton.appendChild(imgElement);
+imgElement.style.width = "25px";
+  } else {
+    drawingArea.style.visibility = 'visible';
+    imgElement.src = "./images/hide.png";
 
+    var existingImg = showWritingButton.querySelector("img");
+    if (existingImg) {
+        showWritingButton.removeChild(existingImg);
+    }
+    
+    showWritingButton.appendChild(imgElement);
+  }
+  alphabetsVisible = !alphabetsVisible;
 
+});
 
+// grid starts
+const cardGrid = document.querySelector('.card-grid');
+const container = document.querySelector('.container');
+const optionsContainer = document.querySelector('.options');
 
+cardGrid.addEventListener('click', function (event) {
+    if (event.target.classList.contains('card')) {
+        container.classList.remove('hidden');
+        cardGrid.style.display = 'none';
 
+    }
+});
 
+const cardElements = document.querySelectorAll('.card');
+cardElements.forEach(card => {
+    card.addEventListener('click', () => {
+        const selectedOption = card.getAttribute('data-option');
+        displaySelectedCard(selectedOption);
+    });
+});
 
+function displaySelectedCard(selectedOption) {
+    const canvas = document.getElementById('drawing-area');
+    const ctx = canvas.getContext('2d');
+    
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    if (selectedOption === "uppercase") {
+        // Display the selected card content
+        ctx.font = '30px "classic notes", cursive';
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillText("ABCDEFGHIJKLMNOPQRSTUVWXYZ", canvas.width / 2, canvas.height / 2);
+    } else if (selectedOption === "lowercase") {
+        // Display the selected card content
+        ctx.font = '30px "classic notes", cursive';
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillText("abcdefghijklmnopqrstuvwxyz", canvas.width / 2, canvas.height / 2);
+    } else if (selectedOption === "numbers") {
+        // Display the selected card content
+        ctx.font = '30px "classic notes", cursive';
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillText("0123456789", canvas.width / 2, canvas.height / 2);
+    } else if (selectedOption === "special") {
+        // Display the selected card content
+        ctx.font = '30px "classic notes", cursive';
+        ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.fillText("!@#$%^&*(){}[]:;?/<>", canvas.width / 2, canvas.height / 2);
+    } else if (selectedOption === "image") {
+        const img = new Image();
+        img.onload = function () {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        };
+        img.src = "./images/sample.png";
+    }
+}
 
+// grid ends

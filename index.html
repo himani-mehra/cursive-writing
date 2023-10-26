@@ -9,17 +9,20 @@
 </head>
 
 <body>
-        <div class="logo">
-            <div id="animation-container" class="animation-container"></div>
-        </div>
-
-    <div class="container">
-       
-    
-        <div class="options">
-            <!-- <div>
-                <div id="text" rows="4" cols="50"></div>
-            </div> -->
+    <div class="logo">
+        <div id="animation-container" class="animation-container">Practice Digital Handwriting!</div>
+    </div>
+    <div class="card-grid">
+        <div class="card" data-option="uppercase">ABC</div>
+        <div class="card" data-option="lowercase">abc</div>
+        <div class="card" data-option="numbers">123</div>
+        <div class="card" data-option="special">$*/</div>
+        <div class="card" data-option="upload">Upload</div>
+        <div class="card" data-option="image">Sample</div>
+    </div>
+   
+    <div class="container hidden" id="first-card-section">
+        <div class="options" id="options">
             <div class="paper-section" onchange="startPractice()">
                 <div class="option_paper" data-option="uppercase">ABC</div>
                 <div class="option_paper" data-option="lowercase">abc</div>
@@ -31,67 +34,41 @@
                 </div>
                 <div class="option_paper" data-option="image" onclick="uploadImage()">sample</div>
             </div>
-            
-            <!-- <div>
-                <select id="cursive-input" class="dropdown-container" onchange="startPractice()">
-                    <option value="uppercase">ABC</option>
-                    <option value="lowercase">abc</option>
-                    <option value="numbers">123</option>
-                    <option value="special">$*/</option>
-                </select>
-            </div> -->
-          
+
             <div id="events">
 
             </div>
         </div>
-        <div class="left-section">
-            <div id="container" class="canvas-space">
+
+        <div id="right-section" class="right-section">
+            <div class="canvas-space">
                 <canvas id="drawing-area" class="drawing-area" height="500" width="950"></canvas>
                 <canvas id="overlay-canvas" class="drawing-area" height="500" width="950"></canvas>
             </div>
-            <!-- <div id="drag-trace-button" draggable="true">Drag me</div> -->
-    
-    
+
             <div id="draggable-container">
                 <div class="options-container">
                     <button id="clear-button" class="clear-button" type="button">
-                        <img class="eraser" src="./images/eraser.png"/>
+                        <img class="eraser" src="./images/eraser.png" />
                     </button>
                     <button id="hide-canvas" class="hide-canvas" type="button">
-                        <img class="eraser" src="./images/hide.png"/>
+                        <img class="eraser" src="./images/hide.png" />
                     </button>
                     <button id="color-button" class="color-button" type="button">
-                        <img class="paint" src="./images/color.png"/>
+                        <img class="paint" src="./images/color.png" />
                     </button>
                 </div>
             </div>
-           </div>
-        
+        </div>
+
     </div>
-       <footer class="footer">
+    <footer class="footer">
         <div class="footer-icons">
-            Made with love by <a href="https://www.linkedin.com/in/himani-mehra/" target="_blank"><b><u>Himani</u></b></a>
-            </div>
+            Made with ❤️ by<a class="bold-name" href="https://www.linkedin.com/in/himani-mehra/"
+                target="_blank"><b><u>Himani Mehra</u></b></a>
+        </div>
     </footer>
 </body>
-<style>
- .option_paper {
-    margin-bottom: 10px;
-    width: 95px;
-    height: 120px;
-    border: 1px solid #A4B3B7;
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    box-shadow: 0 0 6px 0 #999;
-}
-input[type="file" i] {
-    display: none;
-}
-</style>
 <script src="index.js"></script>
 
 </html>

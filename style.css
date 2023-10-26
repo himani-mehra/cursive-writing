@@ -1,6 +1,15 @@
 body {
-    /* padding: 0; */
     margin: 0;
+    font-family: "classic notes";
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    font-family: "classic notes";
+    overflow: auto;
 }
 
 
@@ -13,26 +22,15 @@ body {
     position: absolute;
     top: 10;
     left: 10;
-    opacity: 0.4;
+    /* opacity: 0.4; */
     pointer-events: none;
-    /* background-color: azure; */
 }
-
-.container {
-    display: flex;
-    font-family:"classic notes";
-    justify-content: center;
-    align-items: center;
-    min-height: 90vh;
-}
-
 .canvas-space {
     display: flex;
 }
 
-.left-section {
+.right-section {
     display: flex;
-    flex:70%;
     justify-content: space-between;
 }
 .drawing-area {
@@ -51,6 +49,23 @@ body {
     width: 8vh;
     height: 5vh;
 }
+.option_paper {
+    margin-bottom: 10px;
+    width: 95px;
+    height: 120px;
+    border: 1px solid #A4B3B7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.option_paper:hover {
+    box-shadow: 0 0 6px 0 #999;
+}
+input[type="file" i] {
+    display: none;
+}
 
 .clear-button:hover {
     background-color: #ceced3;
@@ -62,7 +77,6 @@ body {
     background-color: white;
     border: none;
     cursor: pointer;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     transition: background-color 0.3s;
     width: 8vh;
     height: 5vh;
@@ -72,31 +86,32 @@ body {
     background-color: #ceced3;
 }
 .options {
-    flex: 5%;
+    width: 25vh;
     max-height: 75vh;
     overflow-y: scroll;
-    
+    scrollbar-width: thin;
+    scrollbar-color: rgb(224, 224, 224) rgb(202, 202, 202);
 }
 
-/* .options::-webkit-scrollbar {
-    width: 2px;
+.options::-webkit-scrollbar {
+    width: 10px;
 }
 
 .options::-webkit-scrollbar-thumb {
-    background: rgb(182, 181, 181);
+    background: rgb(224, 224, 224);
+    border-radius: 5px;
 }
 
 .options::-webkit-scrollbar-thumb:hover {
-    background: rgb(202, 202, 202);
-} */
+    background: rgb(138, 137, 137);
+}
+ 
 
 
 .hide-canvas {
-    /* margin: 2em; */
     background-color: white;
     border: none;
     cursor: pointer;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); */
     transition: background-color 0.3s;
     width: 8vh;
     height: 5vh;
@@ -112,7 +127,6 @@ body {
     background-color: #517dd4;
     color: white;
     font-size: 20px;
-    /* font-family: "Nexa Rust", cursive; */
     font-family:"classic notes";
 }
 
@@ -127,17 +141,19 @@ body {
   }
 
 .footer-icons a {
+    font-size: 20px;
     text-decoration: none;
-    color: white;
+    color: black;
     margin: 0 10px;
+}
+.bold-name:hover {
+    color: #1f1e21;
 }
 
 .footer {
-    /* background: linear-gradient(45deg, #ff9999, #6699ff, #cc66ff, #e6e6e6); */
     background-size: 200% 200%;
-    /* animation: gradientAnimation 4s linear infinite; */
-    color: white;
-    background-color: rgb(83, 83, 83);
+    background-color: white;
+    /* background-color: rgb(83, 83, 83); */
     padding: 20px;
     text-align: center;
 }
@@ -149,25 +165,11 @@ body {
     margin: 15px auto 0 auto;
     text-align: left;
     font-size: 30px;
-    font-weight: bold;
+    /* font-weight: bold; */
     font-family:"classic notes";
-    /* animation: revealMessage 1s ease-in-out; */
 }
-/* @keyframes revealMessage {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-} */
 
 #draggable-container {
-    /* width: 80px;
-    height: 10px; */
     position: fixed;
     user-select: none;
     cursor: pointer;
@@ -185,10 +187,6 @@ body {
 .options-container {
     display: flex;
     flex-direction: column;
-    /* right:10; */
-    /* align-items: center; */
-    /* height: 20vh;
-    width: 10vh; */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     
@@ -198,4 +196,55 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .options {
+        max-height: none;
+        overflow: visible;
+    }
+
+    .options::-webkit-scrollbar {
+        display: none;
+    }
+}
+@media (min-width: 769px) {
+    .right-section {
+        flex: 70%;
+    }
+}
+
+
+
+/* Hide the entire container by default */
+.container.hidden {
+    display: none;
+}
+
+/* Add styles to format the card grid and individual cards (unchanged) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px; /* Adjust as needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    border: 1px solid #A4B3B7;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: 120px;
+    width: 95px;
+    font-size: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 0 6px 0 #999;
 }
