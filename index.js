@@ -1,6 +1,7 @@
 const canvas = document.getElementById('drawing-area');
 const canvasContext = canvas.getContext('2d');
 const clearButton = document.getElementById('clear-button');
+const hideContainerEl = document.getElementById('first-card-section');
 const state = {
   mousedown: false
 };
@@ -84,12 +85,6 @@ function getMosuePositionOnCanvas(event) {
 function clearCanvas() {
   canvasContext.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-
-
-
-
-
 
 const tabElements = document.querySelectorAll('.option_paper');
 tabElements.forEach(tab => {
@@ -179,7 +174,6 @@ imageInput.addEventListener('change', () => {
     }
 });
 
-
 const showWritingButton = document.getElementById('hide-canvas');
 const drawingArea = document.getElementById('drawing-area');
 var imgElement = document.createElement("img");
@@ -187,10 +181,6 @@ var imgElements = document.createElement("img");
 
 
 let alphabetsVisible = true;
-
-
-
-
 
 const overlayCanvas = document.getElementById('overlay-canvas');
 const overlayCanvasContext = overlayCanvas.getContext('2d');
@@ -262,18 +252,15 @@ function clearOverlayDrawing() {
 document.body.addEventListener('click', function(event) {
   const target = event.target;
 
-  // Handle clear button click
   if (target.id === 'clear-button') {
     handleClearButtonClick(event);
   }
 
-  // Handle new "eye icon" button click with a unique ID
   if (target.id === 'new-eye-icon-button') {
     handleNewEyeIconButtonClick(event);
   }
 });
 
-// drag widget start
 
 var isDragging = false;
 var offset = { x: 0, y: 0 };
@@ -305,7 +292,7 @@ draggableContainer.addEventListener("touchstart", (e) => {
 
 draggableContainer.addEventListener("touchmove", (e) => {
   if (isDragging) {
-    e.preventDefault(); // Prevent default touchmove behavior
+    e.preventDefault();
     draggableContainer.style.left = e.touches[0].clientX - offset.x + "px";
     draggableContainer.style.top = e.touches[0].clientY - offset.y + "px";
   }
@@ -343,13 +330,14 @@ imgElement.style.width = "25px";
 });
 
 // grid starts
+
 const cardGrid = document.querySelector('.card-grid');
 const container = document.querySelector('.container');
 const optionsContainer = document.querySelector('.options');
 
 cardGrid.addEventListener('click', function (event) {
     if (event.target.classList.contains('card')) {
-        container.classList.remove('hidden');
+        // container.classList.remove('hidden');
         cardGrid.style.display = 'none';
 
     }
@@ -371,25 +359,21 @@ function displaySelectedCard(selectedOption) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     if (selectedOption === "uppercase") {
-        // Display the selected card content
         ctx.font = '30px "classic notes", cursive';
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
         ctx.fillText("ABCDEFGHIJKLMNOPQRSTUVWXYZ", canvas.width / 2, canvas.height / 2);
     } else if (selectedOption === "lowercase") {
-        // Display the selected card content
         ctx.font = '30px "classic notes", cursive';
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
         ctx.fillText("abcdefghijklmnopqrstuvwxyz", canvas.width / 2, canvas.height / 2);
     } else if (selectedOption === "numbers") {
-        // Display the selected card content
         ctx.font = '30px "classic notes", cursive';
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
         ctx.fillText("0123456789", canvas.width / 2, canvas.height / 2);
     } else if (selectedOption === "special") {
-        // Display the selected card content
         ctx.font = '30px "classic notes", cursive';
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
@@ -405,3 +389,149 @@ function displaySelectedCard(selectedOption) {
 }
 
 // grid ends
+
+document.getElementById('uppercase-card').addEventListener('click', displayUppercaseCards);
+
+function displayUppercaseCards() {
+  const secondCardGrid = document.querySelector('.second-card-grid');
+  const container = document.querySelector('#first-card-section');
+  const cardGrid = document.querySelector('.card-grid');
+  const canvas = document.getElementById('drawing-area');
+  const ctx = canvas.getContext('2d');
+
+  // Clear the second card grid content in case it's not empty
+  secondCardGrid.innerHTML = '';
+
+  for (let i = 65; i <= 90; i++) {
+      const letter = String.fromCharCode(i);
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.textContent = letter;
+      card.addEventListener('click', function() {
+          // Remove the "hidden" class from the container
+          container.classList.remove('hidden');
+          // Hide the cardGrid and second card grid
+          cardGrid.style.display = 'none';
+          secondCardGrid.style.display = 'none';
+
+          const lettersPerRow = 7;
+          const letterSize = 28; // Font size
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+
+          const columnSpacing = canvasWidth / lettersPerRow;
+          const rowSpacing = canvasHeight / Math.ceil(20 / lettersPerRow);
+
+          for (let j = 0; j < 20; j++) {
+              const row = Math.floor(j / lettersPerRow);
+              const col = j % lettersPerRow;
+
+              const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
+              const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
+
+              ctx.font = `${letterSize}px Arial`;
+              ctx.fillText(letter, x, y);
+          }
+      });
+      secondCardGrid.appendChild(card);
+  }
+  
+}
+
+
+document.getElementById('numbers-card').addEventListener('click', displayNumbersCard);
+function displayNumbersCard() {
+  const secondCardGrid = document.querySelector('.second-card-grid');
+  const container = document.querySelector('#first-card-section');
+  const cardGrid = document.querySelector('.card-grid');
+  const canvas = document.getElementById('drawing-area');
+  const ctx = canvas.getContext('2d');
+
+  // Clear the second card grid content in case it's not empty
+  secondCardGrid.innerHTML = '';
+
+  for (let i = 0; i <= 9; i++) {
+      const letter = i;
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.textContent = letter;
+      card.addEventListener('click', function() {
+          // Remove the "hidden" class from the container
+          container.classList.remove('hidden');
+          // Hide the cardGrid and second card grid
+          cardGrid.style.display = 'none';
+          secondCardGrid.style.display = 'none';
+
+          const lettersPerRow = 7;
+          const letterSize = 28; // Font size
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+
+          const columnSpacing = canvasWidth / lettersPerRow;
+          const rowSpacing = canvasHeight / Math.ceil(11 / lettersPerRow);
+
+          for (let j = 0; j < 20; j++) {
+              const row = Math.floor(j / lettersPerRow);
+              const col = j % lettersPerRow;
+
+              const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
+              const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
+
+              ctx.font = `${letterSize}px Arial`;
+              ctx.fillText(letter, x, y);
+          }
+      });
+      secondCardGrid.appendChild(card);
+  }
+  
+}
+
+
+
+document.getElementById('lowercase-card').addEventListener('click', displayLowercaseCards);
+
+function displayLowercaseCards() {
+  const secondCardGrid = document.querySelector('.second-card-grid');
+  const container = document.querySelector('#first-card-section');
+  const cardGrid = document.querySelector('.card-grid');
+  const canvas = document.getElementById('drawing-area');
+  const ctx = canvas.getContext('2d');
+
+  // Clear the second card grid content in case it's not empty
+  secondCardGrid.innerHTML = '';
+
+  for (let i = 97; i <= 122; i++) {
+      const letter = String.fromCharCode(i);
+      const card = document.createElement('div');
+      card.classList.add('card');
+      card.textContent = letter;
+      card.addEventListener('click', function() {
+          // Remove the "hidden" class from the container
+          container.classList.remove('hidden');
+          // Hide the cardGrid and second card grid
+          cardGrid.style.display = 'none';
+          secondCardGrid.style.display = 'none';
+
+          const lettersPerRow = 7;
+          const letterSize = 28; // Font size
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+
+          const columnSpacing = canvasWidth / lettersPerRow;
+          const rowSpacing = canvasHeight / Math.ceil(20 / lettersPerRow);
+
+          for (let j = 0; j < 20; j++) {
+              const row = Math.floor(j / lettersPerRow);
+              const col = j % lettersPerRow;
+
+              const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
+              const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
+
+              ctx.font = `${letterSize}px Arial`;
+              ctx.fillText(letter, x, y);
+          }
+      });
+      secondCardGrid.appendChild(card);
+  }
+  
+}
