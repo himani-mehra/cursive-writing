@@ -9,17 +9,25 @@
 </head>
 
 <body>
+
         <div id="animation-container" class="animation-container">Practice Digital Handwriting!</div>
     <div class="card-grid">
         <div class="card" data-option="uppercase" id="uppercase-card">ABC</div>
         <div class="card" data-option="lowercase" id="lowercase-card">abc</div>
         <div class="card" data-option="numbers" id="numbers-card">123</div>
-        <div class="card" data-option="special">$*/</div>
+        <div class="card" data-option="special" id="special-card">$*/</div>
         <div class="card" data-option="upload">Upload</div>
-        <div class="card" data-option="image">Sample</div>
+        <div class="card" data-option="image" id="image-card-1">Sample</div>
     </div>
-    <div class="second-card-grid">
+    <div class="image-grid" id="image-grid-1"></div>
+
+    <div class="second-card-grid" onclick="showSubHeading()">
        
+    </div>
+    <div class="sub-headings" id="subheadingEl">
+        <span class="uppercase_second_card common" onclick="redirectToUppercaseCards()">A-Z</span>
+        <span class="lowercase_second_card common" onclick="redirectToLowercaseCards()">a-z</span>
+        <span class="numbers_second_card common" onclick="redirectToSpecialcaseCards()">0-9</span>
     </div>
 
    
@@ -34,7 +42,7 @@
                     <input type="file" id="imageInput" accept="image/*">
                     Upload
                 </div>
-                <div class="option_paper" data-option="image" onclick="uploadImage()">sample</div>
+                <div class="option_paper" data-option="image">sample</div>
             </div>
 
             <div id="events">
@@ -47,19 +55,19 @@
                 <canvas id="drawing-area" class="drawing-area" height="500" width="950"></canvas>
                 <canvas id="overlay-canvas" class="drawing-area" height="500" width="950"></canvas>
             </div>
+        </div>
+        <div id="draggable-container">
+            <div class="options-container">
+                <button id="clear-button" class="clear-button" type="button">
+                    <img class="eraser" src="./images/eraser.png" />
+                </button>
+                <button id="hide-canvas" class="hide-canvas" type="button">
+                    <img class="eraser" src="./images/hide.png" />
+                </button>
+                <button id="color-button" class="color-button" type="button">
+                    <img class="paint" src="./images/color.png" />
+                </button>
 
-            <div id="draggable-container">
-                <div class="options-container">
-                    <button id="clear-button" class="clear-button" type="button">
-                        <img class="eraser" src="./images/eraser.png" />
-                    </button>
-                    <button id="hide-canvas" class="hide-canvas" type="button">
-                        <img class="eraser" src="./images/hide.png" />
-                    </button>
-                    <button id="color-button" class="color-button" type="button">
-                        <img class="paint" src="./images/color.png" />
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -70,6 +78,7 @@
                 target="_blank"><b><u>Himani Mehra</u></b></a>
         </div>
     </footer>
+    <div id="pen-cursor" class="cursor"></div>
 </body>
 <script src="index.js"></script>
 
