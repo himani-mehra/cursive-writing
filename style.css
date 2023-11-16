@@ -198,26 +198,6 @@ input[type="file" i] {
     flex-direction: column;
     align-items: center;
 }
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
-
-    .options {
-        max-height: none;
-        overflow: visible;
-    }
-
-    .options::-webkit-scrollbar {
-        display: none;
-    }
-}
-
-@media (min-width: 769px) {
-    .right-section {
-        flex: 70%;
-    }
-}
 
 
 
@@ -298,6 +278,7 @@ input[type="file" i] {
         box-sizing: border-box;
         width: 95px;
         height: 120px;
+        word-break: break-all;
       }
   
       .card img {
@@ -305,3 +286,39 @@ input[type="file" i] {
         height: 100%;
         cursor: pointer;
       }
+     .gap-class {
+        padding-left: 10px;
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+      @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+    
+        .options {
+            max-height: none;
+            overflow: visible;
+        }
+    
+        .options::-webkit-scrollbar {
+            display: none;
+        }
+    }
+    
+    @media (min-width: 769px) {
+        .right-section {
+            flex: 70%;
+        }
+    }
+    

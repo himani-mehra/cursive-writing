@@ -1,4 +1,4 @@
-const canvas = document.getElementById('drawing-area');
+let canvas = document.getElementById('drawing-area');
 const canvasContext = canvas.getContext('2d');
 const clearButton = document.getElementById('clear-button');
 const hideContainerEl = document.getElementById('first-card-section');
@@ -299,8 +299,8 @@ cardElements.forEach(card => {
 });
 
 function displaySelectedCard(selectedOption) {
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -339,8 +339,8 @@ function displayUppercaseCards() {
   const secondCardGrid = document.querySelector('.second-card-grid');
   const container = document.querySelector('#first-card-section');
   const cardGrid = document.querySelector('.card-grid');
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
   secondCardGrid.innerHTML = '';
 
   for (let i = 65; i <= 90; i++) {
@@ -376,8 +376,8 @@ function displayNumbersCard() {
   const secondCardGrid = document.querySelector('.second-card-grid');
   const container = document.querySelector('#first-card-section');
   const cardGrid = document.querySelector('.card-grid');
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
   secondCardGrid.innerHTML = '';
   for (let i = 0; i <= 9; i++) {
     const letter = i;
@@ -412,8 +412,8 @@ function displayLowercaseCards() {
   const secondCardGrid = document.querySelector('.second-card-grid');
   const container = document.querySelector('#first-card-section');
   const cardGrid = document.querySelector('.card-grid');
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
   secondCardGrid.innerHTML = '';
   for (let i = 97; i <= 122; i++) {
     const letter = String.fromCharCode(i);
@@ -448,8 +448,8 @@ function displaySpecialCharacters() {
   const secondCardGrid = document.querySelector('.second-card-grid');
   const container = document.querySelector('#first-card-section');
   const cardGrid = document.querySelector('.card-grid');
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
   secondCardGrid.innerHTML = '';
   const characters = "!@#$%^&*(){}[]:;?/<>";
   for (let i = 0; i < characters.length; i++) {
@@ -526,29 +526,39 @@ function redirectToSpecialcaseCards() {
 }
 document.addEventListener('DOMContentLoaded', function () {
   const imageUrls = [
-    'images/sample.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png',
-    'images/paint-bucket.png'
+   'images/cursive-writing/sample-a.png',
+   'images/cursive-writing/sample-b.png',
+   'images/cursive-writing/sample-c.png',
+   'images/cursive-writing/sample-d.png',
+   'images/cursive-writing/sample-e.png',
+   'images/cursive-writing/sample-f.png',
+   'images/cursive-writing/sample-g.png',
+   'images/cursive-writing/sample-h.png',
+   'images/cursive-writing/sample-i.png',
+   'images/cursive-writing/sample-j.png',
+   'images/cursive-writing/sample-k.png',
+   'images/cursive-writing/sample-L.png',
+   'images/cursive-writing/sample-m.png',
+   'images/cursive-writing/sample-n.png',
+   'images/cursive-writing/sample-o.png',
+   'images/cursive-writing/sample-p.png',
+   'images/cursive-writing/sample-q.png',
+   'images/cursive-writing/sample-r.png',
+   'images/cursive-writing/sample-s.png',
+   'images/cursive-writing/sample-t.png',
+   'images/cursive-writing/sample-u.png',
+   'images/cursive-writing/sample-v.png',
+   'images/cursive-writing/sample-w.png',
+   'images/cursive-writing/sample-x.png',
+   'images/cursive-writing/sample-y.png',
+   'images/cursive-writing/sample-z.png'
   ];
 
   const imageGrid = document.getElementById('image-grid-1');
   const sampleCard = document.getElementById('image-card-1');
   let canvasClicked = false;
-  const canvas = document.getElementById('drawing-area');
-  const ctx = canvas.getContext('2d');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
   const overlayCanvas = document.getElementById('overlay-canvas');
   imageGrid.style.visibility = 'hidden';
   document.addEventListener('click', function (event) {
@@ -585,21 +595,44 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function handleImageClick(imageSrc) {
     const img = new Image();
-    if (canvasClicked && canvas && ctx) {
-      img.onload = function () {
+    img.onload = function () {
+      if (canvasClicked && canvas && ctx) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      };
-      img.src = imageSrc;
-      imageGrid.style.visibility = 'hidden';
-    } else {
-      console.error("Canvas or context not available. Make sure to click on the canvas first.");
-    }
+        imageGrid.style.visibility = 'hidden';
+      } else {
+        console.error("Canvas or context not available. Make sure to click on the canvas first.");
+      }
+    };
+    img.src = imageSrc;
   }
+  
   imageGrid.addEventListener('click', function (event) {
     const target = event.target;
     if (target.tagName === 'IMG') {
       handleImageClick(target.src);
     }
+  });
+});
+
+
+
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const colorButton = document.getElementById('color-button');
+  const colorPicker = document.getElementById('colorPicker');
+
+  colorButton.addEventListener('click', function () {
+      // Toggle the display of the color picker
+      if (colorPicker.style.display === 'none' || colorPicker.style.display === '') {
+          colorPicker.style.display = 'block';
+      } else {
+          colorPicker.style.display = 'none';
+      }
   });
 });
