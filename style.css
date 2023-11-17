@@ -274,7 +274,7 @@ input[type="file" i] {
   
       .card {
         flex: 0 0 calc(12.5% - 10px);
-        margin: 5px;
+        margin: 7px;
         box-sizing: border-box;
         width: 95px;
         height: 120px;

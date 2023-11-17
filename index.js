@@ -298,56 +298,98 @@ cardElements.forEach(card => {
   });
 });
 
-function displaySelectedCard(selectedOption) {
+document.getElementById('uppercase-card').addEventListener('click', displayUppercaseCharacters);
+
+function displayUppercaseCharacters() {
+  const secondCardGrid = document.querySelector('.second-card-grid');
+  const container = document.querySelector('#first-card-section');
+  const cardGrid = document.querySelector('.card-grid');
   let canvas = document.getElementById('drawing-area');
   let ctx = canvas.getContext('2d');
-
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  if (selectedOption === "uppercase") {
-    ctx.font = '30px "Life-Lessons", cursive';
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.fillText("ABCDEFGHIJKLMNOPQRSTUVWXYZ", canvas.width / 2, canvas.height / 2);
-  } else if (selectedOption === "lowercase") {
-    ctx.font = '30px "Life-Lessons", cursive';
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.fillText("abcdefghijklmnopqrstuvwxyz", canvas.width / 2, canvas.height / 2);
-  } else if (selectedOption === "numbers") {
-    ctx.font = '30px "Life-Lessons", cursive';
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.fillText("0123456789", canvas.width / 2, canvas.height / 2);
-  } else if (selectedOption === "special") {
-    ctx.font = '30px "Life-Lessons", cursive';
-    ctx.textBaseline = "middle";
-    ctx.textAlign = "center";
-    ctx.fillText("!@#$%^&*(){}[]:;?/<>", canvas.width / 2, canvas.height / 2);
-  } else if (selectedOption === "image") {
-    const img = new Image();
-    img.onload = function () {
+  secondCardGrid.innerHTML = '';
+  
+  for (let asciiCode = 65; asciiCode <= 90; asciiCode++) {
+    const char = String.fromCharCode(asciiCode);
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.textContent = char;
+    card.addEventListener('click', function () {
+      container.classList.remove('hidden');
+      cardGrid.style.display = 'none';
+      secondCardGrid.style.display = 'none';
+      const lettersPerRow = 7;
+      const letterSize = 28;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const columnSpacing = canvasWidth / lettersPerRow;
+      const rowSpacing = canvasHeight / Math.ceil(26 / lettersPerRow);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-    img.src = "./images/sample.png";
+      for (let j = 0; j < 26; j++) {
+        const row = Math.floor(j / lettersPerRow);
+        const col = j % lettersPerRow;
+        const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
+        const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
+        ctx.font = `40px "classic notes", cursive`;
+        ctx.fillText(char, x, y);
+      }
+    });
+    secondCardGrid.appendChild(card);
   }
 }
 
-document.getElementById('uppercase-card').addEventListener('click', displayUppercaseCards);
-function displayUppercaseCards() {
+document.getElementById('numbers-card').addEventListener('click', displayNumbers);
+
+function displayNumbers() {
   const secondCardGrid = document.querySelector('.second-card-grid');
   const container = document.querySelector('#first-card-section');
   const cardGrid = document.querySelector('.card-grid');
   let canvas = document.getElementById('drawing-area');
   let ctx = canvas.getContext('2d');
   secondCardGrid.innerHTML = '';
-
-  for (let i = 65; i <= 90; i++) {
-    const letter = String.fromCharCode(i);
+  const numbers = "0123456789";
+  for (let i = 0; i < numbers.length; i++) {
+    const num = numbers[i];
     const card = document.createElement('div');
     card.classList.add('card');
-    card.textContent = letter;
+    card.textContent = num;
+    card.addEventListener('click', function () {
+      container.classList.remove('hidden');
+      cardGrid.style.display = 'none';
+      secondCardGrid.style.display = 'none';
+      const numbersPerRow = 5;
+      const numberSize = 28;
+      const canvasWidth = canvas.width;
+      const canvasHeight = canvas.height;
+      const columnSpacing = canvasWidth / numbersPerRow;
+      const rowSpacing = canvasHeight / Math.ceil(10 / numbersPerRow);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let j = 0; j < 10; j++) {
+        const row = Math.floor(j / numbersPerRow);
+        const col = j % numbersPerRow;
+        const x = col * columnSpacing + (columnSpacing - numberSize) / 2;
+        const y = row * rowSpacing + (rowSpacing - numberSize) / 2;
+        ctx.font = `40px "classic notes", cursive`;
+        ctx.fillText(num, x, y);
+      }
+    });
+    secondCardGrid.appendChild(card);
+  }
+}
+document.getElementById('lowercase-card').addEventListener('click', displayLowercaseCharacters);
+
+function displayLowercaseCharacters() {
+  const secondCardGrid = document.querySelector('.second-card-grid');
+  const container = document.querySelector('#first-card-section');
+  const cardGrid = document.querySelector('.card-grid');
+  let canvas = document.getElementById('drawing-area');
+  let ctx = canvas.getContext('2d');
+  secondCardGrid.innerHTML = '';
+  
+  for (let asciiCode = 97; asciiCode <= 122; asciiCode++) {
+    const char = String.fromCharCode(asciiCode);
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.textContent = char;
     card.addEventListener('click', function () {
       container.classList.remove('hidden');
       cardGrid.style.display = 'none';
@@ -357,91 +399,21 @@ function displayUppercaseCards() {
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
       const columnSpacing = canvasWidth / lettersPerRow;
-      const rowSpacing = canvasHeight / Math.ceil(20 / lettersPerRow);
-      for (let j = 0; j < 20; j++) {
+      const rowSpacing = canvasHeight / Math.ceil(26 / lettersPerRow);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let j = 0; j < 26; j++) {
         const row = Math.floor(j / lettersPerRow);
         const col = j % lettersPerRow;
         const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
         const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
         ctx.font = `40px "classic notes", cursive`;
-        ctx.fillText(letter, x, y);
+        ctx.fillText(char, x, y);
       }
     });
     secondCardGrid.appendChild(card);
   }
 }
 
-document.getElementById('numbers-card').addEventListener('click', displayNumbersCard);
-function displayNumbersCard() {
-  const secondCardGrid = document.querySelector('.second-card-grid');
-  const container = document.querySelector('#first-card-section');
-  const cardGrid = document.querySelector('.card-grid');
-  let canvas = document.getElementById('drawing-area');
-  let ctx = canvas.getContext('2d');
-  secondCardGrid.innerHTML = '';
-  for (let i = 0; i <= 9; i++) {
-    const letter = i;
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.textContent = letter;
-    card.addEventListener('click', function () {
-      container.classList.remove('hidden');
-      cardGrid.style.display = 'none';
-      secondCardGrid.style.display = 'none';
-      const lettersPerRow = 7;
-      const letterSize = 28;
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const columnSpacing = canvasWidth / lettersPerRow;
-      const rowSpacing = canvasHeight / Math.ceil(11 / lettersPerRow);
-      for (let j = 0; j < 20; j++) {
-        const row = Math.floor(j / lettersPerRow);
-        const col = j % lettersPerRow;
-        const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
-        const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
-        ctx.font = `40px "classic notes", cursive`;
-        ctx.fillText(letter, x, y);
-      }
-    });
-    secondCardGrid.appendChild(card);
-  }
-}
-
-document.getElementById('lowercase-card').addEventListener('click', displayLowercaseCards);
-function displayLowercaseCards() {
-  const secondCardGrid = document.querySelector('.second-card-grid');
-  const container = document.querySelector('#first-card-section');
-  const cardGrid = document.querySelector('.card-grid');
-  let canvas = document.getElementById('drawing-area');
-  let ctx = canvas.getContext('2d');
-  secondCardGrid.innerHTML = '';
-  for (let i = 97; i <= 122; i++) {
-    const letter = String.fromCharCode(i);
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.textContent = letter;
-    card.addEventListener('click', function () {
-      container.classList.remove('hidden');
-      cardGrid.style.display = 'none';
-      secondCardGrid.style.display = 'none';
-      const lettersPerRow = 7;
-      const letterSize = 28;
-      const canvasWidth = canvas.width;
-      const canvasHeight = canvas.height;
-      const columnSpacing = canvasWidth / lettersPerRow;
-      const rowSpacing = canvasHeight / Math.ceil(20 / lettersPerRow);
-      for (let j = 0; j < 20; j++) {
-        const row = Math.floor(j / lettersPerRow);
-        const col = j % lettersPerRow;
-        const x = col * columnSpacing + (columnSpacing - letterSize) / 2;
-        const y = row * rowSpacing + (rowSpacing - letterSize) / 2;
-        ctx.font = `40px "classic notes", cursive`;
-        ctx.fillText(letter, x, y);
-      }
-    });
-    secondCardGrid.appendChild(card);
-  }
-}
 
 document.getElementById('special-card').addEventListener('click', displaySpecialCharacters);
 function displaySpecialCharacters() {
