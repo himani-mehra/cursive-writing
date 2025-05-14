@@ -18,8 +18,8 @@ Practice digital handwriting with this interactive web application.
 ## Introduction
 
 Digital Handwriting Practice is a web application that allows users to practice handwriting digitally. It provides a set of features for adding comments, replying to comments, a scoring system, and more.
-<img width="1312" alt="Screenshot 20<img width="1308" alt="Screenshot 2025-05-14 at 10 23 12 PM" src="https://github.com/user-attachments/assets/9ef4cf4c-7efe-4770-91bb-323f13eb6757" />
-25-05-14 at 10 22 53 PM" src="https://github.com/user-attachments/assets/58c26dde-0fd6-4e69-8421-7f092038e39c" />
+<img width="1312" alt="Screenshot 2025-05-14 at 10 22 53 PM" src="https://github.com/user-attachments/assets/58c26dde-0fd6-4e69-8421-7f092038e39c" />
+<img width="1308" alt="Screenshot 2025-05-14 at 10 23 12 PM" src="https://github.com/user-attachments/assets/9ef4cf4c-7efe-4770-91bb-323f13eb6757" />
 
 ## Features
 
